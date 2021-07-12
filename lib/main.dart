@@ -26,6 +26,7 @@ class MyHomePage extends StatelessWidget {
           title: Text('Flutter App'),
         ),
         body: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               width: double.infinity,
@@ -35,10 +36,13 @@ class MyHomePage extends StatelessWidget {
                 elevation: 10,
               ),
             ),
-            Card(
-              child: Text('LIST OF TX'),
-              elevation: 10,
-            ),
+            Column(
+              children: transactions
+                  .map((tx) => Card(
+                        child: Text(tx.title),
+                      ))
+                  .toList(),
+            )
           ],
         ));
   }
