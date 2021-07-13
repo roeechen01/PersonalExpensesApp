@@ -20,6 +20,9 @@ class MyHomePage extends StatelessWidget {
     Transaction(id: 't2', title: 'Groceries', amount: 55, date: DateTime.now())
   ];
 
+  final titleController = TextEditingController();
+  final amountController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -27,7 +30,7 @@ class MyHomePage extends StatelessWidget {
           title: Text('Flutter App'),
         ),
         body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+          mainAxisAlignment: MainAxisAlignment.start,
           children: [
             Container(
               width: double.infinity,
@@ -37,7 +40,29 @@ class MyHomePage extends StatelessWidget {
                 elevation: 10,
               ),
             ),
-            //
+            Card(
+              elevation: 5,
+              child: Padding(
+                padding: EdgeInsets.all(10),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.end,
+                  children: [
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Title'),
+                      controller: titleController,
+                    ),
+                    TextField(
+                      decoration: InputDecoration(labelText: 'Amount'),
+                      controller: amountController,
+                    ),
+                    FlatButton(
+                        onPressed: () => print(titleController.text),
+                        child: Text('Add Transaction'),
+                        textColor: Colors.purple),
+                  ],
+                ),
+              ),
+            ),
             Column(
               children: transactions
                   .map((tx) => Card(
@@ -70,7 +95,7 @@ class MyHomePage extends StatelessWidget {
                                         fontSize: 16),
                                   ),
                                   Text(
-                                    DateFormat('dd/mm/yyyy').format(tx.date),
+                                    DateFormat('dd/MM/yyyy').format(tx.date),
                                     style: TextStyle(color: Colors.grey),
                                   )
                                 ])
