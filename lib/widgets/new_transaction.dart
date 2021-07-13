@@ -1,18 +1,26 @@
 import 'package:flutter/material.dart';
 
-class NewTransacrion extends StatelessWidget {
-  final titleController = TextEditingController();
-  final amountController = TextEditingController();
+class NewTransacrion extends StatefulWidget {
   final Function addFunc;
+
+  NewTransacrion(this.addFunc);
+
+  @override
+  _NewTransacrionState createState() => _NewTransacrionState();
+}
+
+class _NewTransacrionState extends State<NewTransacrion> {
+  final titleController = TextEditingController();
+
+  final amountController = TextEditingController();
 
   void addTransaction() {
     if (titleController.text.isEmpty ||
         double.parse(amountController.text) <= 0) return;
 
-    addFunc(titleController.text, double.parse(amountController.text));
+    widget.addFunc(titleController.text, double.parse(amountController.text));
+    Navigator.of(context).pop();
   }
-
-  NewTransacrion(this.addFunc);
 
   @override
   Widget build(BuildContext context) {
