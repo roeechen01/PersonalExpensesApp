@@ -3,6 +3,9 @@ import 'package:flutter/material.dart';
 class NewTransacrion extends StatelessWidget {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
+  final Function addFunc;
+
+  NewTransacrion(this.addFunc);
 
   @override
   Widget build(BuildContext context) {
@@ -22,7 +25,8 @@ class NewTransacrion extends StatelessWidget {
               controller: amountController,
             ),
             FlatButton(
-                onPressed: () => print(titleController.text),
+                onPressed: () => addFunc(
+                    titleController.text, double.parse(amountController.text)),
                 child: Text('Add Transaction'),
                 textColor: Colors.purple),
           ],
