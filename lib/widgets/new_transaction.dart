@@ -43,9 +43,10 @@ class _NewTransacrionState extends State<NewTransacrion> {
               onSubmitted: (_) => addTransaction(),
             ),
             FlatButton(
-                onPressed: addTransaction,
-                child: Text('Add Transaction'),
-                textColor: Colors.purple),
+              onPressed: addTransaction,
+              child: Text('Add Transaction'),
+              textColor: Theme.of(context).primaryColor,
+            )
           ],
         ),
       ),

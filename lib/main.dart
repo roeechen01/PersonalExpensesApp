@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter_complete_guide/models/transactions.dart';
-import 'package:flutter_complete_guide/widgets/new_transaction.dart';
-import 'package:flutter_complete_guide/widgets/transacrions_list.dart';
+import './models/transactions.dart';
+import './widgets/new_transaction.dart';
+import './widgets/transacrions_list.dart';
 
 void main() => runApp(MyApp());
 
@@ -10,6 +10,21 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter App',
+      theme: ThemeData(
+          fontFamily: 'Quicksans',
+          appBarTheme: AppBarTheme(
+              textTheme: ThemeData.light().textTheme.copyWith(
+                  headline6: TextStyle(
+                      fontFamily: 'Quicksand',
+                      fontSize: 20,
+                      fontWeight: FontWeight.bold))),
+          textTheme: ThemeData.light().textTheme.copyWith(
+              headline6: TextStyle(
+                  fontFamily: 'OpenSans',
+                  fontWeight: FontWeight.bold,
+                  fontSize: 18)),
+          primarySwatch: Colors.deepPurple,
+          accentColor: Colors.amber),
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
