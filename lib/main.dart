@@ -9,6 +9,7 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter App',
       home: MyHomePage(),
+      debugShowCheckedModeBanner: false,
     );
   }
 }
@@ -20,24 +21,31 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-        appBar: AppBar(
-          title: Text('Flutter App'),
-        ),
-        body: SingleChildScrollView(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.start,
-            children: [
-              Container(
-                width: double.infinity,
-                child: Card(
-                  color: Colors.lightBlue,
-                  child: Text('CHART!'),
-                  elevation: 10,
-                ),
+      appBar: AppBar(
+        title: Text('Flutter App'),
+        actions: [IconButton(icon: Icon(Icons.add), onPressed: () {})],
+      ),
+      body: SingleChildScrollView(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+            Container(
+              width: double.infinity,
+              child: Card(
+                color: Colors.lightBlue,
+                child: Text('CHART!'),
+                elevation: 10,
               ),
-              UserTransactions()
-            ],
-          ),
-        ));
+            ),
+            UserTransactions()
+          ],
+        ),
+      ),
+      floatingActionButton: FloatingActionButton(
+        child: Icon(Icons.add),
+        onPressed: () {},
+      ),
+      floatingActionButtonLocation: FloatingActionButtonLocation.centerFloat,
+    );
   }
 }

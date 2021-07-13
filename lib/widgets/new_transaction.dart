@@ -5,6 +5,13 @@ class NewTransacrion extends StatelessWidget {
   final amountController = TextEditingController();
   final Function addFunc;
 
+  void addTransaction() {
+    if (titleController.text.isEmpty ||
+        double.parse(amountController.text) <= 0) return;
+
+    addFunc(titleController.text, double.parse(amountController.text));
+  }
+
   NewTransacrion(this.addFunc);
 
   @override
@@ -19,14 +26,16 @@ class NewTransacrion extends StatelessWidget {
             TextField(
               decoration: InputDecoration(labelText: 'Title'),
               controller: titleController,
+              onSubmitted: (_) => addTransaction(),
             ),
             TextField(
               decoration: InputDecoration(labelText: 'Amount'),
+              keyboardType: TextInputType.numberWithOptions(decimal: true),
               controller: amountController,
+              onSubmitted: (_) => addTransaction(),
             ),
             FlatButton(
-                onPressed: () => addFunc(
-                    titleController.text, double.parse(amountController.text)),
+                onPressed: addTransaction,
                 child: Text('Add Transaction'),
                 textColor: Colors.purple),
           ],
