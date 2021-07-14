@@ -12,20 +12,22 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       title: 'Flutter App',
       theme: ThemeData(
-          fontFamily: 'Quicksans',
-          appBarTheme: AppBarTheme(
-              textTheme: ThemeData.light().textTheme.copyWith(
-                  headline6: TextStyle(
-                      fontFamily: 'Quicksand',
-                      fontSize: 20,
-                      fontWeight: FontWeight.bold))),
-          textTheme: ThemeData.light().textTheme.copyWith(
-              headline6: TextStyle(
-                  fontFamily: 'OpenSans',
-                  fontWeight: FontWeight.bold,
-                  fontSize: 18)),
-          primarySwatch: Colors.deepPurple,
-          accentColor: Colors.amber),
+        fontFamily: 'Quicksans',
+        appBarTheme: AppBarTheme(
+            textTheme: ThemeData.light().textTheme.copyWith(
+                headline6: TextStyle(
+                    fontFamily: 'Quicksand',
+                    fontSize: 20,
+                    fontWeight: FontWeight.bold))),
+        textTheme: ThemeData.light().textTheme.copyWith(
+            headline6: TextStyle(
+                fontFamily: 'OpenSans',
+                fontWeight: FontWeight.bold,
+                fontSize: 18),
+            button: TextStyle(color: Colors.white)),
+        primarySwatch: Colors.deepPurple,
+        accentColor: Colors.amber,
+      ),
       home: MyHomePage(),
       debugShowCheckedModeBanner: false,
     );
@@ -75,12 +77,12 @@ class _MyHomePageState extends State<MyHomePage> {
         });
   }
 
-  void _addTransaction(String txTile, double txAmount) {
+  void _addTransaction(String txTile, double txAmount, DateTime date) {
     Transaction tx = Transaction(
         id: DateTime.now().toString(),
         title: txTile,
         amount: txAmount,
-        date: DateTime.now());
+        date: date);
 
     setState(() {
       _userTransactions.add(tx);
