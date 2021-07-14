@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/widgets/chart.dart';
 import './models/transactions.dart';
 import './widgets/new_transaction.dart';
 import './widgets/transacrions_list.dart';
@@ -40,18 +41,25 @@ class _MyHomePageState extends State<MyHomePage> {
   final titleController = TextEditingController();
   final amountController = TextEditingController();
 
-  List<Transaction> _transactions = [
+  List<Transaction> get _recentTransactions {
+    return _userTransactions
+        .where(
+            (e) => e.date.isAfter(DateTime.now().subtract(Duration(days: 7))))
+        .toList();
+  }
+
+  List<Transaction> _userTransactions = [
     Transaction(
       id: '1',
       title: 'Clothes',
       amount: 80,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 3)),
     ),
     Transaction(
       id: '2',
       title: 'Animals',
       amount: 242,
-      date: DateTime.now(),
+      date: DateTime.now().subtract(Duration(days: 5)),
     )
   ];
 
@@ -75,7 +83,7 @@ class _MyHomePageState extends State<MyHomePage> {
         date: DateTime.now());
 
     setState(() {
-      _transactions.add(tx);
+      _userTransactions.add(tx);
     });
   }
 
@@ -103,7 +111,8 @@ class _MyHomePageState extends State<MyHomePage> {
                 elevation: 10,
               ),
             ),
-            TransactionsList(_transactions)
+            Chart(_recentTransactions),
+            TransactionsList(_userTransactions)
           ],
         ),
       ),
