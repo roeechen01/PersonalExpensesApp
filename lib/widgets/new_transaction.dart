@@ -1,4 +1,7 @@
+import 'dart:io';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_complete_guide/widgets/adaptive_flat_button.dart';
 import 'package:intl/intl.dart';
 
 class NewTransacrion extends StatefulWidget {
@@ -76,13 +79,7 @@ class _NewTransacrionState extends State<NewTransacrion> {
                           ? DateFormat.yMMMEd().format(_datePicked)
                           : 'No date picked!'),
                     ),
-                    FlatButton(
-                      onPressed: startPickDate,
-                      child: Text('Choose a date',
-                          style: TextStyle(
-                              color: Theme.of(context).primaryColor,
-                              fontWeight: FontWeight.bold)),
-                    ),
+                    AdaptiveFlatButton('Choose a date', startPickDate)
                   ]),
                 ),
                 RaisedButton(
